@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+    .high_light {
+        background: yellow;
+    }
+    .active {
+        background: pink;
+    }
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        // 미래에 만들어지는 tr에도 이벤트가 동작하도록 document에서 이벤트를 처리
+        var input = $("input[type=text]");
+        var td;
+
+        // 테이블의 행을 클릭했을 때 실행되는 이벤트 처리
+        $(document).on("click", ".row", function(){
+            // 클릭한 행의 각 td 요소 값을 input 요소에 설정
+            td = $(this).find("td");
+            for(i = 0; i < 4; i++){
+                $(input[i]).val($(td[i]).html());
+            }
+            // 기존에 활성화된 행의 active 클래스 제거하고, 클릭한 행에 active 클래스 추가
+            $(".row").removeClass("active");
+            $(this).addClass("active");
+        });
+        
+        // 테이블의 행에 마우스 진입했을 때 실행되는 이벤트 처리
+        $(document).on("mouseenter", ".row", function(){
+            // 기존에 강조된 행의 high_light 클래스 제거하고, 마우스 진입한 행에 high_light 클래스 추가
+            $(".row").removeClass("high_light");
+            $(this).addClass("high_light");
+        });
+        
+        // 추가 버튼 클릭 시 실행되는 이벤트 처리
+        $("#btnAdd").click(function(){
+            // 새로운 행(tr) 생성
+            var tr = $("<tr></tr>");
+            $(tr).addClass("row");
+            var tot = 0;
+            // input 요소의 값을 가져와서 각 td 요소로 추가
+            $.each(input, function(i){
+                $(tr).append($("<td></td>").html($(this).val()));
+                if(i != 0){
+                    tot += eval($(this).val());
+                }
+            });
+
+        // 수정 버튼 클릭 시 실행되는 수정 이벤트 처리
+        $("#btnUpdate").click(function(){
+			var name = $(input[0]).val();
+			var kor = eval( $(input[1]).val() );
+			var eng = eval( $(input[2]).val() );
+			var math = eval( $(input[3]).val() );
+			var tot = kor+eng+math;
+			var avg = tot/3;
+			
+			$(td[0]).html(name);
+			$(td[1]).html(kor);
+			$(td[2]).html(eng);
+			$(td[3]).html(math);
+			$(td[4]).html(tot);
+			$(td[5]).html(avg);
+		});
+        // 해당 행을 더블클릭 시 실행되는 삭제 이벤트 처리
+        $(document).on("dblclick", ".row", function(){
+			$(this).remove();
+		});
+        // 삭제 버튼을 클릭 시 실행되는 이벤트 처리
+		$("#btnDelete").click(function(){
+			$(tr).remove();
+		});
+        // 모두 삭제 버튼 클릭 시 실행되는 이벤트 처리
+		$("#btnDeleteAll").click(function(){
+			$("tbody").empty();
+		});        
+
+            var avg = tot / 3;
+
+            // 총점과 평균 열 추가
+            $(tr).append($("<td></td>").html(tot));
+            $(tr).append($("<td></td>").html(avg));
+            // 테이블에 행 추가
+            $("table").append(tr);
+            // input 요소 초기화 및 첫 번째 input 요소에 포커스 설정
+            $(input).val("");
+            $(input[0]).focus();
+        })
+    });
+</script>
+</head>
+<body>    
+    <table border="1" width="80%">
+        <tr>
+            <td>이름</td>
+            <td>국어</td>
+            <td>영어</td>
+            <td>수학</td>
+            <td>총점</td>
+            <td>평균</td>
+        </tr>
+    </table>
+    <hr>
+    이름 : <input type="text"><br>
+    국어 : <input type="text"><br>
+    영어 : <input type="text"><br>
+    수학 : <input type="text"><br>
+    <input type="button" value="추가" id="btnAdd">
+    <input type="button" value="수정" id="btnUpdate">
+    <input type="button" value="삭제" id="btnDelete">
+    <input type="button" value="모두삭제" id="btnDeleteAll">
+    </body>
+    </html>

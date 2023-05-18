@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .member{
+            width: 250px;
+            height: 150px;
+            border: 3px solid pink;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px;
+            display: inline-block;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
+    <script>
+        $(function(){
+            // 자바스크립트 객체의 표현 = javaScript Object Notation (JSON)
+           var arr = [
+            {name:"홍길동",age:20,addr:"서울시 마포구 서교동"},
+            {name:"이순신",age:23,addr:"서울시 마포구 동교동"},
+            {name:"김유신",age:25,addr:"서울시 마포구 신수동"}
+           ];
+
+           $.each(arr,function(i,item){
+            console.log(i,item);
+            var div = $('<div></div>');
+            var p = $('<p>'+item.name+'</p>').html(' 이름: '+item.name + ' <br> ' + ' 나이: '+item.age + ' <br> '+' 주소: '+  item.addr);
+            $(div).append(p);
+            $(div).addClass('member');
+            $('#output').append(div);
+           })
+        });
+
+    </script>
+    <title>Document</title>
+</head>
+<body>
+   <h2>회원정보</h2>
+   <hr>
+   <div id="output"></div>
+</body>
+</html>  

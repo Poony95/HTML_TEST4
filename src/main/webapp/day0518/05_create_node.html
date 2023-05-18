@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
+    <script>
+        $(function(){
+           var arr = ["김연수","강현서","심유리","염혜원","이아현","정소희"];
+
+           var i=0;
+           for(i=0;i<arr.length;i++){
+            var li = $('<li></li>').html(arr[i]);
+            $('ul').append(li);
+           }
+        });
+    </script>
+    <title>Document</title>
+</head>
+<body>
+   <h2>스케치업 팀 구성원</h2>
+    <hr>
+    <ul></ul>
+</body>
+</html>  

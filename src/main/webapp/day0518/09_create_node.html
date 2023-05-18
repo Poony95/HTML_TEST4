@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+      .member{
+            width: 240px;
+            height: 130px;
+            border: 3px solid rgb(28, 12, 57);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px;
+            display: inline-block;
+
+            background-color: rgb(241, 247, 250);
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
+    <script>
+        
+	$(function(){
+		var data = [
+			{no:1,name:"축구공1",price:35000,qty:10,fname:"ball1.jpg"},
+			{no:2,name:"축구공2",price:45000,qty:10,fname:"ball2.jpg"},
+			{no:3,name:"축구공3",price:55000,qty:10,fname:"ball3.jpg"},
+			{no:4,name:"축구공4",price:65000,qty:10,fname:"ball4.jpg"},
+			{no:5,name:"축구공5",price:75000,qty:10,fname:"ball5.jpg"}
+		];
+
+           $.each(data,function(i,item){
+            
+            console.log(i,item);
+            var div = $('<div></div>');
+           
+            var table = $('<table></table>');
+            var tr = $('<tr></tr>');
+            var td1 = $('<td></td>');
+            var td2 = $('<td></td>');
+
+            var img = $('<img/>').attr({
+                src: this.fname,
+                width: 100,
+                height:100
+            });
+           
+            var p = $('<p>'+item.name+'</p>').html(' 상품번호: '+item.no + ' <br> '+' 상품명: '+item.name + ' <br> ' + ' 가격: '+item.price + ' <br> '+ ' 수량: '+item.qty + ' <br> ');
+            $(td1).append(img);
+            $(td2).append(p);
+            $(tr).append(td1,td2);
+            $(table).append(tr);
+            $(div).append(table);
+            $(div).addClass('member');
+            $('#output').append(div);
+           })
+	});
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+</body>
+</html>  

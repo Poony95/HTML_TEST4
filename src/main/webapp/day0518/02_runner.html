@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
+    <title>Document</title>
+    <script>
+        $(function(){
+            var n=0;
+            setInterval(function(){
+                $('#man').attr("src",(n%15)+".png");
+                n++;
+            },1000/20)
+        });
+    </script>
+</head>
+<body>
+    <img src="0.png" id="man">
+</body>
+</html>

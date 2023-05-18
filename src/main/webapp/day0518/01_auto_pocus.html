@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
+    <script>
+        $(function(){
+            var input = $('input');
+
+            $(input[1]).keyup(function(event){
+                if($(this).val().length==0 && event.keyCode ==8){
+                    $(input[0]).focus();
+                }
+            });
+        });
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <input type="text"  size="6" maxlength="6"> -
+    <input type="text" size="7" maxlength="7">
+    <hr>
+    <input type="text" size="2" maxlength="2">
+    <!--maxlength를 해줘야 글자 수에 제한이 됩니다.-->
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+       #box{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+       }
+       
+       #btn{
+            width: 130px;
+            height: 80px;
+        }
+        #btnstop{
+            width: 130px;
+            height: 80px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"> </script>
+    <script>
+        $(function(){
+           $('#btn').click(function(){
+            $('#box').animate({
+                width:200
+            },1000).animate({
+                height:200
+            },1000).animate({
+                left: 500
+            },1000);
+           })
+           $('#btnstop').click(function(){
+
+            $('#box').stop(true,true);
+           })
+        });
+        
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <button id="btn">애니메이션 효과</button>
+    <button id="btnstop">애니메이션 중지</button>
+</body>
+</html>
